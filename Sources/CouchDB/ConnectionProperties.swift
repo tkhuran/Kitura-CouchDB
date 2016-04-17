@@ -69,7 +69,7 @@ public class ConnectionProperties {
     return str
   }
 
-  static func deriveHttpProtocol(secured: Bool) -> String {
+  static func deriveHttpProtocol(_ secured: Bool) -> String {
     let httpProtocol = (secured) ? "https" : "http"
     return httpProtocol
   }

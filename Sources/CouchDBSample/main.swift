@@ -71,12 +71,12 @@ let jsonStr =
 #if os(Linux)
 let jsonData = jsonStr.bridge().dataUsingEncoding(NSUTF8StringEncoding)
 #else
-let jsonData = jsonStr.bridge().data(usingEncoding: NSUTF8StringEncoding)
+let jsonData = jsonStr.bridge().data(using: NSUTF8StringEncoding)
 #endif
 // Convert NSData to JSON object
 let json = JSON(data: jsonData!)
 
-func chainer(document: JSON?, next: (revisionNumber: String) -> Void) {
+func chainer(_ document: JSON?, next: (revisionNumber: String) -> Void) {
   if let revisionNumber = document?["rev"].string {
     print("revisionNumber is \(revisionNumber)")
     next(revisionNumber: revisionNumber)
@@ -89,7 +89,7 @@ func chainer(document: JSON?, next: (revisionNumber: String) -> Void) {
 }
 
 //Delete document
-func deleteDocument(revisionNumber: String) {
+func deleteDocument(_ revisionNumber: String) {
   database.delete(documentId, rev: revisionNumber, failOnNotFound: false,
     callback: { (error: NSError?) in
         if error != nil {
@@ -104,7 +104,7 @@ func deleteDocument(revisionNumber: String) {
 }
 
 //Update document
-func updateDocument(revisionNumber: String) {
+func updateDocument(_ revisionNumber: String) {
   //var json = JSON(data: jsonData!)
   //json["value"] = "value2"
   database.update(documentId, rev: revisionNumber, document: json,
