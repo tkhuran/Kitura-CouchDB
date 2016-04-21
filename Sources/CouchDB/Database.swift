@@ -52,7 +52,7 @@ public class Database {
         case StartKeyDocID (String)
         case UpdateSequence (Bool)
         
-        case Keys ([AnyObject])
+        case Keys ([Any])
         
     }
     
@@ -217,7 +217,7 @@ public class Database {
     public func queryByView(view: String, ofDesign design: String, usingParameters params: [Database.QueryParameters], callback: (JSON?, NSError?) -> ()) {
         var paramString = ""
         
-            var keys: [AnyObject]?
+            var keys: [Any]?
         
         
         for param in params {
