@@ -39,14 +39,14 @@ class DBTests : XCTestCase {
     let credentials = Utils.readCredentials()
 
     // Connection properties for testing Cloudant or CouchDB instance
-    let connProperties = ConnectionProperties(host: credentials.host,
+    let connProperties = ConnectionProperties(hostName: credentials.host,
       port: credentials.port, secured: false,
-      username: credentials.username,
+      userName: credentials.username,
       password: credentials.password)
 
     // Create couchDBClient instance using conn properties
     let couchDBClient = CouchDBClient(connectionProperties: connProperties)
-    print("Hostname is: \(couchDBClient.connProperties.host)")
+    print("Hostname is: \(couchDBClient.connProperties.hostName)")
 
     couchDBClient.createDB("test_db") {(db: Database?, error: NSError?) in
         if let error = error {
