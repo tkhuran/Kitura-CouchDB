@@ -51,11 +51,9 @@ public class Database {
         case StartKey (AnyObject)
         case StartKeyDocID (String)
         case UpdateSequence (Bool)
-        #if os(Linux)
-        case Keys ([Any])
-        #else
+        
         case Keys ([AnyObject])
-        #endif
+        
     }
     
     public static let Error = [
@@ -218,11 +216,9 @@ public class Database {
     
     public func queryByView(view: String, ofDesign design: String, usingParameters params: [Database.QueryParameters], callback: (JSON?, NSError?) -> ()) {
         var paramString = ""
-        #if os(Linux)
-            var keys: [Any]?
-        #else
+        
             var keys: [AnyObject]?
-        #endif
+        
         
         for param in params {
             switch param {
